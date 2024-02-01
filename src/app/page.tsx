@@ -1,22 +1,23 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
   const [isRedirecting, setIsRedirecting] = useState(false);
-  if (typeof window === "undefined") {
-    return null;
-  }
-  if (location.search !== "") {
-    setIsRedirecting(true);
-    let newUrl = location.search.replace("?=", "");
-    if (newUrl.indexOf("https://") === -1) {
-      newUrl = "https://" + newUrl;
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && location.search !== "") {
+      setIsRedirecting(true);
+      let newUrl = location.search.replace("?=", "");
+      if (newUrl.indexOf("https://") === -1) {
+        newUrl = "https://" + newUrl;
+      }
+      router.push(newUrl);
     }
-    router.push(newUrl);
-  }
+  }, [router]);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {isRedirecting ? (
