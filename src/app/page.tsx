@@ -11,10 +11,11 @@ export default function Home() {
     if (typeof window !== "undefined" && location.search !== "") {
       setIsRedirecting(true);
       let newUrl = location.search.replace("?=", "");
+
       if (newUrl.indexOf("https://") === -1) {
         newUrl = "https://" + newUrl;
       }
-      router.push(newUrl);
+      router.push(newUrl.replaceAll("[dot]", "."));
     }
   }, [router]);
 
@@ -36,7 +37,7 @@ export default function Home() {
           <br></br>
           Paste this{" "}
           <a className="underline" href="coolthing.app/?=yoururl.com">
-            coolthing.app/?=yoururl.com
+            coolthing.app/?=yoururl[dot]com
           </a>{" "}
           into your LinkedIn!
           <br></br>
