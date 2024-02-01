@@ -6,6 +6,9 @@ import { useState } from "react";
 export default function Home() {
   const router = useRouter();
   const [isRedirecting, setIsRedirecting] = useState(false);
+  if (typeof window === "undefined") {
+    return null;
+  }
   if (location.search !== "") {
     setIsRedirecting(true);
     let newUrl = location.search.replace("?=", "");
