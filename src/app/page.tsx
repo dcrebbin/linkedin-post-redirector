@@ -7,6 +7,7 @@ export default function Home() {
   const router = useRouter();
   const [isRedirecting, setIsRedirecting] = useState(false);
   if (location.search !== "") {
+    setIsRedirecting(true);
     let newUrl = location.search.replace("?=", "");
     if (newUrl.indexOf("https://") === -1) {
       newUrl = "https://" + newUrl;
@@ -29,7 +30,11 @@ export default function Home() {
           Tutorial ^_~
           <br></br>
           <br></br>
-          Paste this <a className="underline" href="coolthing.app/?=yoururl.com">coolthing.app/?=yoururl.com</a> into your LinkedIn!
+          Paste this{" "}
+          <a className="underline" href="coolthing.app/?=yoururl.com">
+            coolthing.app/?=yoururl.com
+          </a>{" "}
+          into your LinkedIn!
           <br></br>
           <br></br>
           <a className="underline" href="https://github.com/dcrebbin">
